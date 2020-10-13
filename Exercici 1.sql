@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2020 a las 11:30:02
+-- Tiempo de generación: 13-10-2020 a las 20:19:54
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `usairlineflights`
+-- Base de datos: `usairlineflights2`
 --
 
 -- --------------------------------------------------------
@@ -28,43 +28,79 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `flights` (
-  `colYear` int(11) DEFAULT NULL,
-  `colMonth` int(11) DEFAULT NULL,
-  `DayOfMonths` int(11) DEFAULT NULL,
-  `DayOfWeek` int(11) DEFAULT NULL,
-  `DepTime` int(11) DEFAULT NULL,
-  `CRSDepTime` int(11) DEFAULT NULL,
-  `ArrTime` int(11) DEFAULT NULL,
-  `CRSArrTime` int(11) DEFAULT NULL,
-  `UniqueCarrier` text DEFAULT NULL,
-  `FlightNum` int(11) DEFAULT NULL,
-  `TailNum` text DEFAULT NULL,
-  `ActualElapsedTime` int(11) DEFAULT NULL,
-  `CRSElapsedTime` int(11) DEFAULT NULL,
-  `AirTime` int(11) DEFAULT NULL,
-  `ArrDelay` int(11) DEFAULT NULL,
-  `DepDelay` int(11) DEFAULT NULL,
-  `Origin` text DEFAULT NULL,
-  `Dest` text DEFAULT NULL,
-  `Distance` int(11) DEFAULT NULL,
-  `TaxiIn` int(11) DEFAULT NULL,
-  `TaxiOut` int(11) DEFAULT NULL,
-  `Cancelled` int(11) DEFAULT NULL,
-  `CancellationCode` text DEFAULT NULL,
-  `Diverted` int(11) DEFAULT NULL,
-  `CarrierDelay` int(11) DEFAULT NULL,
-  `WeatherDelay` int(11) DEFAULT NULL,
-  `NASDelay` int(11) DEFAULT NULL,
-  `SecurityDelay` int(11) DEFAULT NULL,
-  `LateAircraftDelay` int(11) DEFAULT NULL
+  `flightID` int(11) NOT NULL,
+  `colYear` smallint(6) DEFAULT NULL,
+  `colMonth` smallint(6) DEFAULT NULL,
+  `DayOfMonths` smallint(6) DEFAULT NULL,
+  `DayOfWeek` smallint(6) DEFAULT NULL,
+  `DepTime` smallint(6) DEFAULT NULL,
+  `CRSDepTime` smallint(6) DEFAULT NULL,
+  `ArrTime` smallint(6) DEFAULT NULL,
+  `CRSArrTime` smallint(6) DEFAULT NULL,
+  `UniqueCarrier` varchar(32) DEFAULT NULL,
+  `FlightNum` varchar(32) DEFAULT NULL,
+  `TailNum` varchar(32) DEFAULT NULL,
+  `ActualElapsedTime` smallint(6) DEFAULT NULL,
+  `CRSElapsedTime` smallint(6) DEFAULT NULL,
+  `AirTime` smallint(6) DEFAULT NULL,
+  `ArrDelay` smallint(6) DEFAULT NULL,
+  `DepDelay` smallint(6) DEFAULT NULL,
+  `Origin` varchar(32) DEFAULT NULL,
+  `Dest` varchar(32) DEFAULT NULL,
+  `Distance` smallint(6) DEFAULT NULL,
+  `TaxiIn` smallint(6) DEFAULT NULL,
+  `TaxiOut` smallint(6) DEFAULT NULL,
+  `Cancelled` tinyint(1) DEFAULT NULL,
+  `CancellationCode` varchar(32) DEFAULT NULL,
+  `Diverted` tinyint(1) DEFAULT NULL,
+  `CarrierDelay` smallint(6) DEFAULT NULL,
+  `WeatherDelay` smallint(6) DEFAULT NULL,
+  `NASDelay` smallint(6) DEFAULT NULL,
+  `SecurityDelay` smallint(6) DEFAULT NULL,
+  `LateAircraftDelay` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `flights`
 --
 
-INSERT INTO `flights` (`count(FlightNum)`) VALUES
+INSERT INTO `flights` (`count(*)`) VALUES
 (4758);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `flights`
+--
+ALTER TABLE `flights`
+  ADD PRIMARY KEY (`flightID`),
+  ADD KEY `Origin` (`Origin`),
+  ADD KEY `Dest` (`Dest`),
+  ADD KEY `UniqueCarrier` (`UniqueCarrier`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `flights`
+--
+ALTER TABLE `flights`
+  MODIFY `flightID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4759;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `flights`
+--
+ALTER TABLE `flights`
+  ADD CONSTRAINT `flights_ibfk_1` FOREIGN KEY (`Origin`) REFERENCES `usairports` (`IATA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `flights_ibfk_2` FOREIGN KEY (`Dest`) REFERENCES `usairports` (`IATA`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `flights_ibfk_3` FOREIGN KEY (`UniqueCarrier`) REFERENCES `carriers` (`CarrierCode`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
