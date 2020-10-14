@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2020 a las 12:09:03
+-- Tiempo de generación: 14-10-2020 a las 13:41:02
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -47,7 +47,7 @@ CREATE TABLE `flights` (
   `DepDelay` smallint(6) DEFAULT NULL,
   `Origin` varchar(32) DEFAULT NULL,
   `Dest` varchar(32) DEFAULT NULL,
-  `total_distance` smallint(6) DEFAULT NULL,
+  `Distance` smallint(6) DEFAULT NULL,
   `TaxiIn` smallint(6) DEFAULT NULL,
   `TaxiOut` smallint(6) DEFAULT NULL,
   `Cancelled` tinyint(1) DEFAULT NULL,
@@ -64,17 +64,18 @@ CREATE TABLE `flights` (
 -- Volcado de datos para la tabla `flights`
 --
 
-INSERT INTO `flights` (`TailNum`, `total_distance`) VALUES
-('', 4243),
-('', 4243),
-('', 4129),
-('', 4129),
-('N76073', 3904),
-('N78060', 3904),
-('N143AA', 3784),
-('N364A1', 3784),
-('N391AA', 2724),
-('N545UA', 2704);
+INSERT INTO `flights` (`TailNum`, `totalDistance`) VALUES
+(, '941553'),
+(N543UA, '7675'),
+(N12238, '6829'),
+(N580JB, '6277'),
+(N5DCAA, '5300'),
+(N637DL, '5223'),
+(N5DJAA, '5046'),
+(N653UA, '5005'),
+(N614UA, '4950'),
+(N615DL, '4948'),
+(N128DL, '4584');
 
 --
 -- Índices para tablas volcadas
