@@ -100,3 +100,10 @@ EXERCICIS-----------------------------------------------------------------------
 	FROM flights
 	GROUP BY UniqueCarrier, colYear, colMonth
 	ORDER BY total_cancelled DESC;	
+
+6:
+	SELECT TailNum, SUM(Distance) AS totalDistance
+	FROM flights
+	GROUP BY TailNum
+	ORDER BY SUM(Distance) DESC
+	LIMIT 10;
