@@ -70,38 +70,33 @@ Al donar problemes per importar les dades dels fitxers he creat les relacions po
 EXERCICIS-------------------------------------------------------------------------------------------------------------------
 
 1:
-SELECT count(*) FROM flights
+	SELECT count(*) FROM flights
 
 2:
-SELECT Origin, AVG(ArrDelay) 
-AS prom_arribades, 
-AVG(DepDelay) 
-AS prom_sortides 
-FROM flights GROUP BY Origin
+	SELECT Origin, AVG(ArrDelay) 
+	AS prom_arribades, 
+	AVG(DepDelay) 
+	AS prom_sortides 
+	FROM flights GROUP BY Origin
 
 3:
-SELECT Origin, colYear, colMonth, AVG(ArrDelay) 
-AS prom_arribades 
-FROM flights 
-GROUP BY Origin ASC, colYear ASC, colMonth ASC
+	SELECT Origin, colYear, colMonth, AVG(ArrDelay) 
+	AS prom_arribades 
+	FROM flights 
+	GROUP BY Origin ASC, colYear ASC, colMonth ASC
 
 
 4:
-SELECT City, colYear, colMonth, AVG(ArrDelay) 
-AS prom_arribades 
-FROM flights 
-INNER JOIN usairports
-ON Origin = IATA
-GROUP BY City ASC, colYear ASC, colMonth ASC
+	SELECT City, colYear, colMonth, AVG(ArrDelay) 
+	AS prom_arribades 
+	FROM flights 
+	INNER JOIN usairports
+	ON Origin = IATA
+	GROUP BY City ASC, colYear ASC, colMonth ASC
 
-5:
-SELECT UniqueCarrier, colYear, colMonth, Cancelled
-AS total_cancelled 
-FROM flights 
-ORDER BY Cancelled DESC
-
-6:
-SELECT TailNum, Distance AS total_distance 
-FROM flights
-ORDER BY total_distance DESC
-LIMIT 10
+5: 
+	SELECT UniqueCarrier, colYear, colMonth, SUM(Cancelled) 
+	AS total_cancelled
+	FROM flights
+	GROUP BY UniqueCarrier, colYear, colMonth
+	ORDER BY total_cancelled DESC;	
