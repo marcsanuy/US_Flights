@@ -107,3 +107,11 @@ EXERCICIS-----------------------------------------------------------------------
 	GROUP BY TailNum
 	ORDER BY SUM(Distance) DESC
 	LIMIT 10;
+
+7:
+	SELECT UniqueCarrier, AVG(ArrDelay)
+	FROM flights
+	GROUP BY UniqueCarrier
+	HAVING AVG(ArrDelay) > 10
+	ORDER BY AVG(ArrDelay) DESC
+
